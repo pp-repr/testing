@@ -35,16 +35,6 @@ class LoginPage(BasePage):
         with open(dir_path_to_file, "w") as f:
             json.dump(self.get_cookies(), f)
 
-    def add_cookies_to_driver(self, dir_path_to_file):
-        cookies = self.read_cookies(dir_path_to_file)
-        self.add_cookies(cookies)
-        self.refresh_site()
-
-    def read_cookies(self, dir_path_to_file):
-        with open(dir_path_to_file, "r") as f:
-            cookies = json.load(f)
-        return cookies
-
     def find_avatar(self):
         return self.get_element_with_timeout(*self.avatar_img)
     

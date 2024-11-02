@@ -1,6 +1,9 @@
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+import logging
+import json
+import time
 
 from lib.helpers import wait_random_after_operation
 
@@ -18,6 +21,10 @@ class BasePage:
     def get_url(self, url):
         return self.driver.get(url)
     
+    def check_current_url(self):
+        time.sleep(2)
+        return self.driver.current_url
+    
     def refresh_site(self):
         return self.driver.refresh()
     
@@ -25,8 +32,19 @@ class BasePage:
         return self.driver.get_cookies()
     
     def add_cookies(self, cookies):
+        self.driver.execute_cdp_cmd('Network.enable', {})
         for cookie in cookies:
-            self.driver.add_cookie(cookie)
+            self.driver.execute_cdp_cmd('Network.setCookie', cookie)
+        self.driver.execute_cdp_cmd('Network.disable', {})
+
+    def add_cookies_to_driver(self, dir_path_to_file):
+        cookies = self.read_cookies(dir_path_to_file)
+        self.add_cookies(cookies)
+
+    def read_cookies(self, dir_path_to_file):
+        with open(dir_path_to_file, "r") as f:
+            cookies = json.load(f)
+        return cookies
     
     def get_element_with_timeout(self, by_type: By, path):
         return self.wait.until(EC.visibility_of_element_located((by_type, path)))
@@ -49,8 +67,17 @@ class BasePage:
         self.click_element(*self.accept_cookies_button)
 
     def reject_cookies(self):
-        self.click_element(*self.more_about_cookies_button)
-        self.click_element(*self.reject_cookies_button)
+        try:
+            self.click_element(*self.more_about_cookies_button)
+            self.click_element(*self.reject_cookies_button)
+        except:
+            logging.info("Not cookie-banner found")
 
     def skip_advertising(self):
-        self.click_element(*self.skip_advertising_button)
+        try:
+            self.click_element(*self.skip_advertising_button)
+        except:
+            logging.info("Not advertise found")
+
+    def get_screen_width(self):
+        return self.driver.execute_script("return window.innerWidth")

@@ -1,19 +1,22 @@
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.options import Options
-
 import pytest
+
+from pages.BasePage import BasePage
+from lib.config import *
+from lib.helpers import create_driver
 
 
 @pytest.fixture(scope="function")
 def driver():
-    chrome_options = Options()
-    chrome_options.add_experimental_option("detach", True)
-    chrome_options.add_experimental_option("prefs", {
-        "profile.default_content_setting_values.notifications": 2})
-    service = Service(ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=service, options=chrome_options)
-    driver.implicitly_wait(10)
+    driver = create_driver()
+    yield driver
+    driver.quit()
+
+
+@pytest.fixture(scope="function")
+def auth_driver():
+    driver = create_driver()
+    base_page = BasePage(driver)
+    base_page.add_cookies_to_driver(COOKIES_FILE)
+    base_page.get_url(BASE_URL)
     yield driver
     driver.quit()
