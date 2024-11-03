@@ -5,15 +5,45 @@ from pages.SearchPage import SearchPage
 
 class TestSearch:
 
+    @pytest.fixture(autouse=True)
+    def setup_method(self, auth_driver):
+        self.search_page = SearchPage(auth_driver)
+        self.search_page.open_search_window()
+
     @pytest.mark.parametrize("name", [
-    "Angelina Jolie",
-    "Gra o tron",
+    "Chłopi",
+    "Siedem dusz",
     "Nietykalni"
     ])
-    def test_run(self, auth_driver, name):
-        search_page = SearchPage(auth_driver)
-        search_page.open_search_window()
-        search_page.enter_search_input(name)
-        search_page.click_element_field(name)
-        condition = all(quote(word) in search_page.check_current_url() for word in name.split(' '))
-        assert condition, f"Wrong URL: {search_page.check_current_url()}"
+    def test_search_movie(self, name):
+        self.search_page.enter_search_input(name)
+        self.search_page.click_element_field(name)
+        current_url = self.search_page.check_current_url()
+        condition = all(quote(word) in current_url for word in name.split(' '))
+        assert condition, f"Wrong URL: {current_url}"
+        assert name == self.search_page.get_title()
+
+    @pytest.mark.parametrize("name", [
+    "Breaking Bad",
+    "Gra o tron",
+    "Ranczo"
+    ])
+    def test_search_tvseries(self, name):
+        self.search_page.enter_search_input(name)
+        self.search_page.click_element_field(name)
+        current_url = self.search_page.check_current_url()
+        condition = all(quote(word) in current_url for word in name.split(' '))
+        assert condition, f"Wrong URL: {current_url}"
+        assert name == self.search_page.get_title()
+
+    @pytest.mark.parametrize("name", [
+    "Angelina Jolie",
+    "Brad Pitt",
+    "Małgorzata Kożuchowska"
+    ])
+    def test_search_actor(self, name):
+        self.search_page.enter_search_input(name)
+        self.search_page.click_element_field(name)
+        current_url = self.search_page.check_current_url()
+        condition = all(quote(word) in current_url for word in name.split(' '))
+        assert condition, f"Wrong URL: {current_url}"

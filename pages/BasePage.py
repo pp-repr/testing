@@ -81,3 +81,6 @@ class BasePage:
 
     def get_screen_width(self):
         return self.driver.execute_script("return window.innerWidth")
+
+    def scroll_to_element(self, element):
+        self.driver.execute_script("arguments[0].scrollIntoView(true);", element)
