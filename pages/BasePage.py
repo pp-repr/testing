@@ -73,6 +73,10 @@ class BasePage:
         except:
             logging.info("Not cookie-banner found")
 
+    def save_cookies(self, dir_path_to_file):
+        with open(dir_path_to_file, "w") as f:
+            json.dump(self.get_cookies(), f)
+
     def skip_advertising(self):
         try:
             self.click_element(*self.skip_advertising_button)

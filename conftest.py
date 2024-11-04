@@ -19,4 +19,5 @@ def auth_driver():
     base_page.add_cookies_to_driver(COOKIES_FILE)
     base_page.get_url(BASE_URL)
     yield driver
+    base_page.save_cookies(COOKIES_FILE)
     driver.quit()

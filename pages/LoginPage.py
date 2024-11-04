@@ -31,10 +31,6 @@ class LoginPage(BasePage):
     def submit_login_data(self):
         self.click_element(*self.submit_button)
 
-    def save_cookies(self, dir_path_to_file):
-        with open(dir_path_to_file, "w") as f:
-            json.dump(self.get_cookies(), f)
-
     def find_avatar(self):
         return self.get_element_with_timeout(*self.avatar_img)
     

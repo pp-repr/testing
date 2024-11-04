@@ -8,7 +8,7 @@ import random
 from functools import wraps
 
 
-def wait_random_after_operation(secs_from=1.5, sec_to=3):
+def wait_random_after_operation(secs_from=2, sec_to=3.5):
     def decorator(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
@@ -21,7 +21,6 @@ def wait_random_after_operation(secs_from=1.5, sec_to=3):
 
 def create_driver():
     chrome_options = Options()
-    chrome_options.add_experimental_option("detach", True)
     chrome_options.add_experimental_option("prefs", {
         "profile.default_content_setting_values.notifications": 2
     })
