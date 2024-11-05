@@ -14,6 +14,8 @@ class MoviePage(BasePage):
     rate_text = (By.CSS_SELECTOR, ".sc-DWsrX.bMHBPq")
     heart = (By.XPATH, '//div[@data-value="1" and .//i[contains(@class, "ico--like")]]')
     cliecked_heart = (By.XPATH, '//div[@data-value="1" and .//i[contains(@class, "ico--likeSolid")]]')
+    want_watch_button = (By.XPATH, '//div[@value="0" and contains(@class, "sc-deXhhX jEOon")]')
+    del_want_watch_button = (By.XPATH, '//div[@value="3" and contains(@class, "sc-deXhhX ioaCxG")]')
 
     def open_page(self, name):
         selector, path_ = self.opener_film_page
@@ -39,6 +41,12 @@ class MoviePage(BasePage):
     def delete_heart(self):
         self.click_element(*self.cliecked_heart)
 
+    def click_want_watch_option(self):
+        self.click_element(*self.want_watch_button)
+
+    def cancel_want_watch_option(self):
+        self.click_element(*self.del_want_watch_button)
+
     def scroll_to_rating_section(self):
         try:
             if self.get_screen_width() > 1151:
@@ -58,4 +66,10 @@ class MoviePage(BasePage):
             return True
         except:
             return False
-
+        
+    def is_want_watch_clicked(self):
+        try:
+            self.get_element_with_timeout(*self.del_want_watch_button)
+            return True
+        except:
+            return False

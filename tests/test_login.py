@@ -1,5 +1,4 @@
 import pytest
-import time
 
 from pages.LoginPage import LoginPage
 from lib.config import *
@@ -14,7 +13,6 @@ class TestLogin:
         self.login_page = LoginPage(driver)
         self.login_page.get_url(BASE_URL)
         self.login_page.reject_cookies()
-        # time.sleep(5)
         self.login_page.skip_advertising()
         self.login_page.click_login_button()
 

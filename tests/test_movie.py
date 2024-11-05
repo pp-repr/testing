@@ -80,3 +80,31 @@ class TestMovie:
         assert self.movie_page.is_heart_clicked(), "Heart is not clicked"
         self.movie_page.delete_rate()
         assert not self.movie_page.is_heart_clicked(), "Heart is cliecked"
+
+    @pytest.mark.parametrize("name", [
+    "Pianista",
+    "Bogowie",
+    "Aida",
+    ])
+    def test_add_to_want_watch(self, name):
+        self.movie_page.get_url(BASE_URL + f"/search#/?query={quote(name)}")
+        self.movie_page.open_page(name)
+        time.sleep(3)
+        self.movie_page.scroll_to_rating_section()
+        assert not self.movie_page.is_want_watch_clicked(), "Want watch option is cliecked"
+        self.movie_page.click_want_watch_option()
+        assert self.movie_page.is_want_watch_clicked(), "Want watch option is not clicked"
+
+    @pytest.mark.parametrize("name", [
+    "Pianista",
+    "Bogowie",
+    "Aida",
+    ])
+    def test_delete_from_want_watch(self, name):
+        self.movie_page.get_url(BASE_URL + f"/search#/?query={quote(name)}")
+        self.movie_page.open_page(name)
+        time.sleep(3)
+        self.movie_page.scroll_to_rating_section()
+        assert self.movie_page.is_want_watch_clicked(), "Want watch option is not clicked"
+        self.movie_page.cancel_want_watch_option()
+        assert not self.movie_page.is_want_watch_clicked(), "Want watch option is cliecked"
