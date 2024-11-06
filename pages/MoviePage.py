@@ -1,6 +1,5 @@
 from selenium.webdriver.common.by import By
 import logging
-import time
 
 from pages.BasePage import BasePage
 
