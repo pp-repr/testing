@@ -31,7 +31,7 @@ class TestLogin:
         self.login_page.enter_password(INVALID_PASSWORD)
         self.login_page.submit_login_data()
         error_message = self.login_page.get_error_message()
-        assert "Nieprawidłowy login lub hasło!" in error_message.text, "Expected error message not found for incorrect credentials."
+        assert "Nieprawidłowy login lub hasło!" in error_message, "Expected error message not found for incorrect credentials."
 
 
 @pytest.mark.order(2)

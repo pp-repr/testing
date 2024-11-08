@@ -2,7 +2,7 @@ import pytest
 
 from pages.BasePage import BasePage
 from lib.config import *
-from lib.helpers import create_driver
+from lib.utilities import create_driver
 
 
 @pytest.fixture(scope="function")

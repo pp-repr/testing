@@ -4,8 +4,9 @@ from selenium.webdriver.common.by import By
 import logging
 import json
 import time
+from robot.api.deco import keyword
 
-from lib.helpers import wait_random_after_operation
+from lib.utilities import wait_random_after_operation
 
 class BasePage:
     
@@ -14,13 +15,20 @@ class BasePage:
     reject_cookies_button = (By.XPATH, "//button[@aria-label='Nie akceptuj żadnego: Nie wyraź zgody na nasze przetwarzanie danych i zamknij']")
     skip_advertising_button = (By.CLASS_NAME, "ws__skip")
 
-    def __init__(self, driver):
+    def __init__(self, driver=None):
         self.driver = driver
         self.wait = WebDriverWait(driver, 10)
 
+    @keyword
+    def set_driver(self, driver):
+        if self.driver is None:
+            self.driver = driver
+            self.wait = WebDriverWait(driver, 10)
+
+    @keyword
     def get_url(self, url):
         return self.driver.get(url)
-    
+
     def check_current_url(self):
         time.sleep(2)
         return self.driver.current_url
@@ -37,10 +45,12 @@ class BasePage:
             self.driver.execute_cdp_cmd('Network.setCookie', cookie)
         self.driver.execute_cdp_cmd('Network.disable', {})
 
+    @keyword
     def add_cookies_to_driver(self, dir_path_to_file):
         cookies = self.read_cookies(dir_path_to_file)
         self.add_cookies(cookies)
 
+    @keyword
     def read_cookies(self, dir_path_to_file):
         with open(dir_path_to_file, "r") as f:
             cookies = json.load(f)
@@ -66,6 +76,7 @@ class BasePage:
     def accept_cookies(self):
         self.click_element(*self.accept_cookies_button)
 
+    @keyword
     def reject_cookies(self):
         try:
             self.click_element(*self.more_about_cookies_button)
@@ -73,11 +84,14 @@ class BasePage:
         except:
             logging.info("Not cookie-banner found")
 
+    @keyword
     def save_cookies(self, dir_path_to_file):
         with open(dir_path_to_file, "w") as f:
             json.dump(self.get_cookies(), f)
 
+    @keyword
     def skip_advertising(self):
+        time.sleep(3)
         try:
             self.click_element(*self.skip_advertising_button)
         except:
