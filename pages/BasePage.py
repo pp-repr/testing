@@ -29,6 +29,7 @@ class BasePage:
     def get_url(self, url):
         return self.driver.get(url)
 
+    @keyword
     def check_current_url(self):
         time.sleep(2)
         return self.driver.current_url

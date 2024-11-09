@@ -1,27 +1,31 @@
 *** Settings ***
-Resource    ../resources/setup_teardown.resource
-Resource    ../resources/login_keyword.resource
+Resource          ../resources/login_keyword.resource
+Suite Setup       setup_teardown.Setup Browser
+Suite Teardown    setup_teardown.Teardown Browser
+Documentation     Test Suite for Filmweb login      
 
 *** Test Cases ***
-Verify Valid Login Attempt
-    [Documentation]    This test verifies that a user can log in with valid credentials.
-    Setup Browser
-    Setup Login Page
-    Login With Valid Credentials
-    Check User Avatar Visibility
-    Verify Cookies File Is Not Empty
-    Teardown Browser
+Verify Valid Login With Credentials
+    [Documentation]   Verifies if user can log in using valid credentials.
+    [Setup]    Setup Login Page
+    [Tags]    LOGIN_VALID
+    Log Into Page By Filmweb    ${VALID_EMAIL}    ${VALID_PASSWORD}    ${True}
+    Avatar Should Be Visible
+    ${is_cookies}    Get Cookies From File
+    Should Be True    ${is_cookies}
 
-Verify Invalid Login Attempt
-    [Documentation]    This test verifies that a user can log in with invalid credentials.
-    Setup Browser
-    Setup Login Page
-    Log in With Invalid Credentials
-    Teardown Browser
+Verify Invalid Login With Credentials
+    [Documentation]   Verifies if user can log in using invalid credentials.
+    [Setup]    Setup Login Page
+    [Tags]    LOGIN_INVALID
+    Log Into Page By Filmweb    ${INVALID_EMAIL}    ${INVALID_PASSWORD}
+    ${error_message}    Get And Return Error Message
+    Should Contain    ${error_message}    Nieprawidłowy login lub hasło!
 
 Verify Valid Login With Cookies
-    [Documentation]    This test verifies that a user can successfully log in using saved cookies.
-    Setup Browser
+    [Documentation]   Verifies if user can successfully log in using saved cookies.
+    [Tags]    LOGIN_COOKIES
+    ${is_cookies}    Get Cookies From File
+    Skip If    $is_cookies == ${False}    Cookies file not found
     Setup Main Page With Cookies
-    Check User Avatar Visibility
-    Teardown Browser
+    Avatar Should Be Visible

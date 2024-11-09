@@ -3,5 +3,5 @@
 __pycache__
 config.py
 cookies.json
-robot-results/*
-!robot-results/
+resources/robot-results/*
+!resources/robot-results/

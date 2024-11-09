@@ -18,8 +18,8 @@ class TestLogin:
 
     def test_valid_login(self):
         self.login_page.choose_login_method(LoginMethod.FILMWEB)
-        self.login_page.enter_username(EMAIL)
-        self.login_page.enter_password(PASSWORD)
+        self.login_page.enter_username(VALID_EMAIL)
+        self.login_page.enter_password(VALID_PASSWORD)
         self.login_page.submit_login_data()
         self.login_page.save_cookies(COOKIES_FILE)
         assert self.login_page.find_avatar() is not None, "Avatar not found, you are not log in"
