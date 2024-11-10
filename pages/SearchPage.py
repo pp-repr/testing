@@ -4,7 +4,7 @@ from robot.api.deco import keyword
 from pages.BasePage import BasePage
 
 class SearchPage(BasePage):
-    
+
     search_input_button = (By.CSS_SELECTOR, "input#inputSearch")
     search_opener_button = (By.CSS_SELECTOR, "button#searchOpener")
     search_input = (By.CSS_SELECTOR, 'input[placeholder="Szukaj"]')
@@ -21,7 +21,7 @@ class SearchPage(BasePage):
     @keyword
     def enter_search_input(self, text):
         return self.enter_text(*self.search_input, text)
-    
+
     @keyword
     def click_element_field(self, name):
         selector, path_ = self.element_field

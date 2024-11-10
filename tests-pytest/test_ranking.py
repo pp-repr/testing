@@ -4,7 +4,7 @@ from pages.RankingPage import RankingPage
 from lib.config import BASE_URL
 
 class TestRanking:
-    
+
     @pytest.fixture(autouse=True)
     def setup_method(self, driver):
         self.ranking_page = RankingPage(driver)

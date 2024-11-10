@@ -11,7 +11,7 @@ Setup Browser
     Set Suite Variable    ${driver}
 
 Setup Browser With Cookies
-    [Documentation]   Open browser Chrome using cookies (working when cookies are fresh) 
+    [Documentation]   Open browser Chrome using cookies (working when cookies are fresh)
     ${driver}    Create Driver
     ${is_cookies}    Get Cookies From File
     Skip If    $is_cookies == ${False}    Cookies file not found

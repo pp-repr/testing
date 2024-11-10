@@ -9,7 +9,7 @@ from robot.api.deco import keyword
 from lib.utilities import wait_random_after_operation
 
 class BasePage:
-    
+
     accept_cookies_button = (By.ID, "didomi-notice-agree-button")
     more_about_cookies_button = (By.ID, "didomi-notice-learn-more-button")
     reject_cookies_button = (By.XPATH, "//button[@aria-label='Nie akceptuj żadnego: Nie wyraź zgody na nasze przetwarzanie danych i zamknij']")
@@ -33,13 +33,14 @@ class BasePage:
     def check_current_url(self):
         time.sleep(2)
         return self.driver.current_url
-    
+
     def refresh_site(self):
         return self.driver.refresh()
-    
+
     def get_cookies(self):
+        time.sleep(5)
         return self.driver.get_cookies()
-    
+
     def add_cookies(self, cookies):
         self.driver.execute_cdp_cmd('Network.enable', {})
         for cookie in cookies:
@@ -56,7 +57,7 @@ class BasePage:
         with open(dir_path_to_file, "r") as f:
             cookies = json.load(f)
         return cookies
-    
+
     def get_element_with_timeout(self, by_type: By, path):
         return self.wait.until(EC.visibility_of_element_located((by_type, path)))
 

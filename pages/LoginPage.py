@@ -6,7 +6,7 @@ from lib.enums import LoginMethod
 
 
 class LoginPage(BasePage):
-    
+
     login_button = (By.XPATH, "//a[@href='/login']")
     login_with_filmweb_button = (By.XPATH, "//button[contains(., 'Kontynuuj z Filmweb')]")
     username_input = (By.NAME, 'login')
@@ -18,7 +18,7 @@ class LoginPage(BasePage):
     @keyword
     def click_login_button(self):
         self.click_element(*self.login_button)
-    
+
     @keyword
     def choose_login_method(self, method: LoginMethod):
         if method == LoginMethod.FILMWEB:
@@ -39,7 +39,7 @@ class LoginPage(BasePage):
     @keyword
     def find_avatar(self):
         return self.get_element_with_timeout(*self.avatar_img)
-    
+
     @keyword
     def get_error_message(self):
         return self.get_element_with_timeout(*self.error_message).text

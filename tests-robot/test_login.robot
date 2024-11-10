@@ -2,7 +2,7 @@
 Resource          ../resources/login_keyword.resource
 Suite Setup       setup_teardown.Setup Browser
 Suite Teardown    setup_teardown.Teardown Browser
-Documentation     Test Suite for Filmweb login      
+Documentation     Test Suite for Filmweb login
 
 *** Test Cases ***
 Verify Valid Login With Credentials

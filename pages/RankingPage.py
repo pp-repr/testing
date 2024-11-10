@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 from pages.BasePage import BasePage
 
 class RankingPage(BasePage):
-    
+
     ranking = (By.CSS_SELECTOR, ".page__container.rankingTypeSection__container")
 
     def display_ranking(self):

@@ -20,7 +20,7 @@ Setup Main Page With Cookies
 
 Log Into Page By Filmweb
     [Documentation]    Login with data
-    [Arguments]    ${email}    ${password}    ${cookies}=${False}    
+    [Arguments]    ${email}    ${password}    ${cookies}=${False}
     LoginPage.Choose Login Method    FILMWEB
     LoginPage.Enter Username    ${email}
     LoginPage.Enter Password    ${password}
