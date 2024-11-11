@@ -73,7 +73,7 @@ class TestMovie:
         self.movie_page.open_page(name)
         self.movie_page.scroll_to_rating_section()
         assert self.movie_page.is_heart_clicked(), "Heart is not clicked"
-        self.movie_page.delete_rate()
+        self.movie_page.delete_heart()
         assert not self.movie_page.is_heart_clicked(), "Heart is cliecked"
 
     @pytest.mark.parametrize("name", [

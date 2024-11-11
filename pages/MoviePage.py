@@ -16,7 +16,7 @@ class MoviePage(BasePage):
     heart = (By.XPATH, '//div[@data-value="1" and .//i[contains(@class, "ico--like")]]')
     cliecked_heart = (By.XPATH, '//div[@data-value="1" and .//i[contains(@class, "ico--likeSolid")]]')
     want_watch_button = (By.XPATH, '//div[@value="0" and contains(@class, "sc-deXhhX jEOon")]')
-    del_want_watch_button = (By.XPATH, '//div[@value="3" and contains(@class, "sc-deXhhX ioaCxG")]')
+    del_want_watch_button = (By.XPATH, '//div[@value="3" and contains(@class, "sc-deXhhX")]')
 
     @keyword
     def open_page(self, name):
