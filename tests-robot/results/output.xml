@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1.1 (Python 3.12.6 on win32)" generated="2024-11-12T23:36:09.390383" rpa="false" schemaversion="5">
+<suite id="s1" name="Tests-Robot" source="D:\python\testing\tests-robot">
+<suite id="s1-s1" name="Test Ranking" source="D:\python\testing\tests-robot\test_ranking.robot">
+<kw name="Setup Browser" owner="setup_teardown" type="SETUP">
+<kw name="Create Driver" owner="utilities">
+<msg time="2024-11-12T23:36:09.971342" level="INFO">====== WebDriver manager ======</msg>
+<msg time="2024-11-12T23:36:10.848683" level="INFO">Get LATEST chromedriver version for google-chrome</msg>
+<msg time="2024-11-12T23:36:11.003022" level="INFO">Get LATEST chromedriver version for google-chrome</msg>
+<msg time="2024-11-12T23:36:11.140466" level="INFO">Driver [C:\Users\pauul\.wdm\drivers\chromedriver\win64\130.0.6723.116\chromedriver-win32/chromedriver.exe] found in cache</msg>
+<msg time="2024-11-12T23:36:12.266436" level="INFO">${driver} = &lt;selenium.webdriver.chrome.webdriver.WebDriver (session="f525cabffaaa0f6bc83a375a806fb8a0")&gt;</msg>
+<var>${driver}</var>
+<status status="PASS" start="2024-11-12T23:36:09.971342" elapsed="2.295094"/>
+</kw>
+<kw name="Set Suite Variable" owner="BuiltIn">
+<msg time="2024-11-12T23:36:12.266436" level="INFO">${driver} = &lt;selenium.webdriver.chrome.webdriver.WebDriver (session="f525cabffaaa0f6bc83a375a806fb8a0")&gt;</msg>
+<arg>${driver}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<status status="PASS" start="2024-11-12T23:36:12.266436" elapsed="0.000000"/>
+</kw>
+<doc>Open browser Chrome using create_driver from utilities.py</doc>
+<status status="PASS" start="2024-11-12T23:36:09.968099" elapsed="2.298337"/>
+</kw>
+<test id="s1-s1-t1" name="Check of Correct Ranking Loading" line="9">
+<kw name="Setup Ranking Page" owner="ranking_keyword" type="SETUP">
+<kw name="Set Driver" owner="RankingPage">
+<arg>${driver}</arg>
+<status status="PASS" start="2024-11-12T23:36:12.279496" elapsed="0.001015"/>
+</kw>
+<kw name="Get Url" owner="RankingPage">
+<arg>${BASE_URL}/ranking/film</arg>
+<status status="PASS" start="2024-11-12T23:36:12.280511" elapsed="2.760149"/>
+</kw>
+<kw name="Reject Cookies" owner="RankingPage">
+<status status="PASS" start="2024-11-12T23:36:15.041185" elapsed="5.782063"/>
+</kw>
+<kw name="Skip Advertising" owner="RankingPage">
+<status status="PASS" start="2024-11-12T23:36:20.823248" elapsed="5.923261"/>
+</kw>
+<status status="PASS" start="2024-11-12T23:36:12.279496" elapsed="14.467013"/>
+</kw>
+<kw name="Check Ranking Page Display" owner="ranking_keyword">
+<kw name="Ranking Visibility" owner="ranking_keyword">
+<kw name="Display Ranking" owner="RankingPage">
+<msg time="2024-11-12T23:36:26.774907" level="INFO">${is_visible} = True</msg>
+<var>${is_visible}</var>
+<status status="PASS" start="2024-11-12T23:36:26.746509" elapsed="0.028398"/>
+</kw>
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${is_visible}</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2024-11-12T23:36:26.775957" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-11-12T23:36:26.746509" elapsed="0.029448"/>
+</kw>
+<kw name="Ranking Element Visibility" owner="ranking_keyword">
+<kw name="Display Ranking Element" owner="RankingPage">
+<msg time="2024-11-12T23:36:26.816481" level="INFO">${is_visible} = True</msg>
+<var>${is_visible}</var>
+<status status="PASS" start="2024-11-12T23:36:26.775957" elapsed="0.040524"/>
+</kw>
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${is_visible}</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2024-11-12T23:36:26.816481" elapsed="0.000993"/>
+</kw>
+<status status="PASS" start="2024-11-12T23:36:26.775957" elapsed="0.051093"/>
+</kw>
+<kw name="Scroll All Page" owner="RankingPage">
+<status status="PASS" start="2024-11-12T23:36:26.827050" elapsed="57.080591"/>
+</kw>
+<kw name="Is Number Ranking Elements Count Correct" owner="ranking_keyword">
+<kw name="Number Of Elements" owner="RankingPage">
+<msg time="2024-11-12T23:37:23.954508" level="INFO">${number} = 500</msg>
+<var>${number}</var>
+<status status="PASS" start="2024-11-12T23:37:23.907641" elapsed="0.046867"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2024-11-12T23:37:23.954508" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${number}</arg>
+<arg>500</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2024-11-12T23:37:23.954508" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-11-12T23:37:23.907641" elapsed="0.046867"/>
+</kw>
+<status status="PASS" start="2024-11-12T23:36:26.746509" elapsed="57.207999"/>
+</kw>
+<tag>RANKING</tag>
+<status status="PASS" start="2024-11-12T23:36:12.266436" elapsed="71.688072"/>
+</test>
+<kw name="Teardown Browser" owner="setup_teardown" type="TEARDOWN">
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Close Browser" owner="setup_teardown">
+<kw name="Call Method" owner="BuiltIn">
+<arg>${driver}</arg>
+<arg>quit</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" start="2024-11-12T23:37:23.954508" elapsed="2.272252"/>
+</kw>
+<status status="PASS" start="2024-11-12T23:37:23.954508" elapsed="2.272252"/>
+</kw>
+<arg>${driver}</arg>
+<arg>Close Browser</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-11-12T23:37:23.954508" elapsed="2.272252"/>
+</kw>
+<doc>Close browser</doc>
+<status status="PASS" start="2024-11-12T23:37:23.954508" elapsed="2.272252"/>
+</kw>
+<doc>Test Suite for Filmweb's rankings</doc>
+<status status="PASS" start="2024-11-12T23:36:09.421681" elapsed="76.805079"/>
+</suite>
+<status status="PASS" start="2024-11-12T23:36:09.390383" elapsed="76.836377"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">RANKING</stat>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Tests-Robot">Tests-Robot</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1" name="Test Ranking">Tests-Robot.Test Ranking</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2024-11-12T23:36:09.946907" level="WARN">Imported library 'D:\python\testing\lib\config.py' contains no keywords.</msg>
+</errors>
+</robot>
