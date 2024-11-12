@@ -1,6 +1,6 @@
 import pytest
 
-from pages.BasePage import BasePage
+from pages.LoginPage import LoginPage
 from lib.config import *
 from lib.utilities import create_driver
 
@@ -15,9 +15,9 @@ def driver():
 @pytest.fixture(scope="function")
 def auth_driver():
     driver = create_driver()
-    base_page = BasePage(driver)
-    base_page.add_cookies_to_driver(COOKIES_FILE)
-    base_page.get_url(BASE_URL)
+    page = LoginPage(driver)
+    page.add_cookies_to_driver(COOKIES_FILE)
+    page.get_url(BASE_URL)
     yield driver
-    base_page.save_cookies(COOKIES_FILE)
+    page.save_cookies(COOKIES_FILE)
     driver.quit()
