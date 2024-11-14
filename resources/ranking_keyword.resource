@@ -4,14 +4,13 @@ Library      ../pages/RankingPage.py
 
 *** Keywords ***
 Setup Ranking Page
-    [Documentation]
+    [Documentation]    Open and setup ranking page
     RankingPage.Set Driver    ${driver}
     RankingPage.Get Url    ${BASE_URL}/ranking/film
     RankingPage.Reject Cookies
     RankingPage.Skip Advertising
 
 Check Ranking Page Display
-    [Documentation]
     Ranking Visibility
     Ranking Element Visibility
     RankingPage.Scroll All Page

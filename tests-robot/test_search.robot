@@ -7,7 +7,7 @@ Documentation     Test Suite for search films, tv series, actors on Filmweb
 
 *** Test Cases ***
 Search Multiple Films or Tv Show
-    [Documentation]
+    [Documentation]    Searches for movies and TV shows in Filmweb search engine
     [Tags]    FILMS
     [Template]    Search Films Or Tv Show
     Ród smoka
@@ -16,7 +16,7 @@ Search Multiple Films or Tv Show
     Gra o tron
 
 Search Multiple Actors
-    [Documentation]
+    [Documentation]    Searches for actors in Filmweb search engine
     [Tags]    PERSON
     VAR    @{actors}    Angelina Jolie    Al Pacino    Cillian Murphy
     FOR  ${actor}  IN  @{actors}

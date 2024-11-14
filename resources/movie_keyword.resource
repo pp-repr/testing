@@ -7,49 +7,41 @@ Variables    ../lib/config.py
 *** Keywords ***
 
 Rate Film Or Tv Show
-    [Documentation]
     [Arguments]    ${title}    ${rate}
     Open Film Or Tv Show Page    ${title}
     Give Star In Rating Section    ${rate}
 
 Change Rate Film Or Tv Show
-    [Documentation]
     [Arguments]    ${title}    ${rate}
     Open Film Or Tv Show Page    ${title}
     Change Star In Rating Section    ${rate}
 
 Delete Rate Film Or Tv Show
-    [Documentation]
     [Arguments]    ${title}
     Open Film Or Tv Show Page    ${title}
     Delete Star In Rating Section
 
 Add to Favorites Film Or Tv Show
-    [Documentation]
     [Arguments]    ${title}
     Open Film Or Tv Show Page    ${title}
     Give Heart In Rating Section
 
 Delete From Favorites Film Or Tv Show
-    [Documentation]
     [Arguments]    ${title}
     Open Film Or Tv Show Page    ${title}
     Delete Heart In Rating Section
 
 Add To Want Watch Film Or Tv Show
-    [Documentation]
     [Arguments]    ${title}
     Open Film Or Tv Show Page    ${title}
     Click Want Watch Option In Rating Section
 
 Delete From Want Watch Film Or Tv Show
-    [Documentation]
     [Arguments]    ${title}
     Open Film Or Tv Show Page    ${title}
     Uncheck Want Watch Option In Rating Section
 
 Give Heart In Rating Section
-    [Documentation]
     MoviePage.Scroll To Rating Section
     ${is_heart_clicked}    MoviePage.Is Heart Clicked
     Should Not Be True   ${is_heart_clicked}
@@ -58,7 +50,6 @@ Give Heart In Rating Section
     Should Be True    ${is_heart_clicked}
 
 Delete Heart In Rating Section
-    [Documentation]
     MoviePage.Scroll To Rating Section
     ${is_heart_clicked}    MoviePage.Is Heart Clicked
     Should Be True    ${is_heart_clicked}
@@ -67,7 +58,6 @@ Delete Heart In Rating Section
     Should Not Be True    ${is_heart_clicked}
 
 Click Want Watch Option In Rating Section
-    [Documentation]
     MoviePage.Scroll To Rating Section
     ${is_want_watch_clicked}    MoviePage.Is Want Watch Clicked
     Should Not Be True   ${is_want_watch_clicked}
@@ -76,7 +66,6 @@ Click Want Watch Option In Rating Section
     Should Be True    ${is_want_watch_clicked}
 
 Uncheck Want Watch Option In Rating Section
-    [Documentation]
     MoviePage.Scroll To Rating Section
     ${is_want_watch_clicked}    MoviePage.Is Want Watch Clicked
     Should Be True    ${is_want_watch_clicked}
@@ -85,14 +74,12 @@ Uncheck Want Watch Option In Rating Section
     Should Not Be True    ${is_want_watch_clicked}
 
 Open Film Or Tv Show Page
-    [Documentation]
     [Arguments]    ${title}
     MoviePage.Set Driver    ${driver}
     MoviePage.Get Url    ${BASE_URL}/search#/?query=${title}
     MoviePage.Open Page    ${title}
 
 Give Star In Rating Section
-    [Documentation]
     [Arguments]    ${rate}
     MoviePage.Scroll To Rating Section
     ${is_visible}    Is Visible Rate
@@ -106,7 +93,6 @@ Give Star In Rating Section
     END
 
 Change Star In Rating Section
-    [Documentation]
     [Arguments]    ${rate}
     MoviePage.Scroll To Rating Section
     ${is_visible}    Is Visible Rate
@@ -120,7 +106,6 @@ Change Star In Rating Section
     END
 
 Delete Star In Rating Section
-    [Documentation]
     MoviePage.Scroll To Rating Section
     ${is_visible}    Is Visible Rate
     IF  ${is_visible} == ${False}
@@ -134,7 +119,6 @@ Delete Star In Rating Section
     END
 
 Is Visible Rate
-    [Documentation]
     ${element}    MoviePage.Check Rate
     IF  "${element}" == "moja ocena:"
         RETURN    ${False}

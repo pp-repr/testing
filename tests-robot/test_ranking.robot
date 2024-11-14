@@ -7,7 +7,7 @@ Documentation     Test Suite for Filmweb's rankings
 *** Test Cases ***
 
 Check of Correct Ranking Loading
-    [Documentation]
+    [Documentation]    Checks if ranking and ranking elements have loaded correctly.
     [Setup]    Setup Ranking Page
     [Tags]    RANKING
     Check Ranking Page Display
